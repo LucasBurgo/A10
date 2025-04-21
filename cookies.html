@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        #cookie-value {
+            font-weight: bold;
+            color: blue;
+        }
+       </style>
+</head>
+<body>
+    <h1>Set and Retrieve a Cookie</h1>
+    <p>Enter a value to store in a cookie:</p>
+    <input type="text" id="cookie-input" placeholder="Enter text">
+    <button onclick="setCookie()">Set Cookie</button>
+    
+    <p>Stored cookie value: <span id="cookie-value">None</span></p>
+
+    <script>
+        function setCookie() {
+            let value = document.getElementById("cookie-input").value;
+            document.cookie = "myCookie=" + value + "; path=/";
+            displayCookie();
+        }
+      function getCookie(name) {
+            let cookies = document.cookie.split("; ");
+            for (let cookie of cookies) {
+                let [key, val] = cookie.split("=");
+                if (key === name) {
+                    return val;
+                }
+            }
+            return "";
+        }
+
+        function displayCookie() {
+            let storedValue = getCookie("myCookie");
+            document.getElementById("cookie-value").textContent = storedValue ? storedValue : "None";
+        }
+</script>
+</body>
+</html>
